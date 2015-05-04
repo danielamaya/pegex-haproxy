@@ -1,38 +1,29 @@
 $VAR1 = {
           'global' => {
-                        'options' => [
-                                       'log',
-                                       [
-                                         '127.0.0.1 local0',
-                                         '127.0.0.1 local1 notice'
-                                       ],
-                                       'maxconn',
-                                       '4096',
-                                       'user',
-                                       'haproxy',
-                                       'group',
-                                       'haproxy'
-                                     ],
-                        'value' => ''
-                      },
-          'listen' => {
-                        'options' => [
-                                       'mode',
-                                       'http',
-                                       'stats',
-                                       'enable'
-                                     ],
-                        'value' => 'webfarm 0.0.0.0:80'
+                        'value' => '',
+                        'options' => {
+                                       'group' => 'haproxy',
+                                       'log' => [
+                                                  '127.0.0.1 local0',
+                                                  '127.0.0.1 local1 notice'
+                                                ],
+                                       'user' => 'haproxy',
+                                       'maxconn' => '4096'
+                                     }
                       },
           'defaults' => {
-                          'value' => '',
-                          'options' => [
-                                         'log',
-                                         'global',
-                                         'mode',
-                                         'http',
-                                         'option',
-                                         'httplog'
-                                       ]
-                        }
+                          'options' => {
+                                         'option' => 'httplog',
+                                         'mode' => 'http',
+                                         'log' => 'global'
+                                       },
+                          'value' => ''
+                        },
+          'listen' => {
+                        'value' => 'webfarm 0.0.0.0:80',
+                        'options' => {
+                                       'mode' => 'http',
+                                       'stats' => 'enable'
+                                     }
+                      }
         };
